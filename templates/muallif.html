@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Muallif</title>
+</head>
+<body>
+<center>
+{% for i in maqola %}
+
+<h2>{{i.id}}. {{i.sarlavha}}</h2>
+<h2>sana: {{i.sana}}</h2>
+<h2>mavzu: {{i.mavzu}}</h2>
+<h2>matn: {{i.matn}}</h2>
+<h2>{{i.muallif.ism}}</h2>
+
+{% endfor %}
+    </center>
+
+<form method="post">{%csrf_token%}
+<label for="sarlavha">Sarlavha kiriting: </label>
+<input type="text" name="sarlavha">
+<br><br>
+<label for="sana">Sana: </label>
+<input type="date" name="sana">
+<br><br>
+<label for="mavzu">Mavzu: </label>
+<input type="text" name="mavzu">
+<br><br>
+<label for="matn">Matn: </label>
+<input type="text" name="matn">
+<br><br>
+<label for="m_ism">Muallif ismini tanlang: </label>
+      <select name="m_ism">
+        {% for m in muallif %}
+      <option value="{{m.id}}">{{m.ism}}</option>
+        {% endfor %}
+      </select><br><br>
+</form>
+<button type="submit">Qoshish</button>
+
+<button type="submit"><a href="/logout/">Logout</a> </button>
+</body>
+</html>
